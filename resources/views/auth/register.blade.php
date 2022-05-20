@@ -12,7 +12,7 @@
     <body>
 
         <header> <!----------------------HEADER------------------------>
-            <a href="/NewAnime" class="logo_admin">O BLOG</a>
+            <a href="/" class="logo_admin">O BLOG</a>
             <div class="cust_data">
             <a href="#">My Account</a>
             <a href="#">My Cart</a>

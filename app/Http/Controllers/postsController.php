@@ -91,7 +91,7 @@ class PostsController extends Controller
         $post->no_of_comment = 0;
         $post->save();
 
-        return redirect('NewAnime');
+        return redirect('/');
 
     }
 
