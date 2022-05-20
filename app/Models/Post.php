@@ -9,6 +9,6 @@ class Post extends Model
 {
     use HasFactory;
     // protected $table = 'posts';
-    // public $primaryKey = 'id';
+    protected $post =['title' , 'description' , 'category' , 'image_path' , 'created_at' , 'updated_at'];
     
 }

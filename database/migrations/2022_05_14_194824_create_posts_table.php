@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
+
             $table->id();
             // $table->bigIncrements('id')
             $table->unsignedBigInteger('user_id');
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('pined');
             $table->integer('no_of_comment');
+            $table->integer('views');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

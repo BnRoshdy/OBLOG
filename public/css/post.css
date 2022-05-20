@@ -183,11 +183,26 @@ header{
 	color: #fff;
 
 
+
 }
 
+.main-artical h1{
+	color: #fff;
+	overflow-wrap: break-word;
+
+
+}
+
+.main-artical p{
+	color: #fff;
+	overflow-wrap: break-word;
+
+
+}
 
 .main-artical img{
     width: 100%;
+	
 }
 
 .creator{

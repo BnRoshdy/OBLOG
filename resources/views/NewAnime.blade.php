@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <title>our blog</title>
 </head>
+
+
 <body>
     <header> <!----------------------HEADER------------------------>
         <div class="cust_data">
@@ -24,7 +26,7 @@
     @endif
 
         </div>
-        <a href="/" class="logo_admin">o blog</a>
+        <a href="/" class="logo_admin">O BLOG</a>
         
     </header><!---------------------------------------------------->
 
@@ -32,16 +34,18 @@
 
     <section>
     <!-------------------NAVBAR--------------------------->
+    
     <section class="sticky">
         <div class="navbar">
             <ul dir="rtl">
-                <li><a href="#">home1</a></li>
-                <li><a href="#">home2</a></li>
-                <li><a href="#">home3</a></li>
-                <li><a href="#">home4</a></li>
+                <li><a href="/">NewAnime </a></li>
+                <li><a href="/Movies">Movies</a></li>                
+                <li><a href="/Manga">Manga</a></li>
+                <li><a href="/recommend">Recommend</a></li>
             </ul>
         </div>
     </section>
+
     <!---------------------------------------------------->
         <div class="content1">
             <div class="main-artical">
@@ -60,12 +64,12 @@
                     @foreach ($posts as $post)
                         <div class="sub-content">
                         <li>
-                        <a href="home2/{{ $post->id }}"><img src="{{ url($post->image_path) }}"></a>
+                        <a href="PostPage/{{ $post->id }}"><img src="{{ url('image/postPic/'.$post->image_path) }}"></a>
                         <div class="insides" style='colore:white'>
-                        <h3 style="color: white"><a href="home2/{{ $post->id }}">{{$post->title}} </a></h3>
-                        <p>{{$post->description}}</p>
+
+                        <h3 style="color: white" ><a href="PostPage/{{ $post->id }}">{{$post->title}} </a></h3>
                         <small float='left' style="color: white">Created at {{$post->created_at}}</small>
-                        {{-- <small align='left' style="color: white">Created by {{$post->created_by}}</small> --}}
+
                         </li>
                         </div>            
                         @endforeach

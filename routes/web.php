@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\postsController;
+use App\Http\Controllers\commentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,12 @@ Route::get('/home', function () {
 
 Route::get('/',[postsController::class , 'index']);
 
-Route::get('/home2/{id}',[postsController::class , 'show']);
+Route::get('/PostPage/{id}',[postsController::class , 'show']);
 
-Route::post('create',[postsController::class , 'create']);
+Route::get('/create',[postsController::class , 'create']);
+Route::post('/create',[postsController::class , 'store']);  
 
-
+Route::post('/comment',[commentController::class , 'show']);
+Route::post('/comment',[commentController::class , 'store'])->name('ahmed');
 
 

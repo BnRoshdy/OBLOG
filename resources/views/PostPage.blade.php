@@ -23,7 +23,7 @@
 
 @endif
         </div>
-        <a href="/" class="logo_admin">o blog</a>
+        <a href="/" class="logo_admin">OBLOG</a>
     </header><!---------------------------------------------------->
 
 
@@ -33,24 +33,22 @@
     <!-------------------NAVBAR--------------------------->
     <section class="sticky">
         <div class="navbar">
-            <ul dir="rtl" dir="rtl">
-                <li><a href="#">home1</a></li>
-                <li><a href="#">home2</a></li>
-                <li><a href="#">home3</a></li>
-                <li><a href="#">home4</a></li>
-                
+            <ul dir="rtl">
+                <li><a href="/">NewAnime </a></li>
+                <li><a href="/Movies">Movies</a></li>                
+                <li><a href="/Manga">Manga</a></li>
+                <li><a href="/recommend">Recommend</a></li>
             </ul>
         
         
         </div>
     </section><!---------------------------------------------------->
 
-
     <section>
         <div class="content1">
             <div class="main-artical">
                 @foreach ($post as $a )
-                    <a href="#"><img src="{{ url($a->image_path) }}"></a>
+                    <a href="#"><img src="{{ url('image/postPic/'.$a->image_path) }}"></a>
                     
                     <h1 align="center">{{$a->title}}</h1>
                     <p>    
@@ -61,11 +59,14 @@
                     @endforeach
 
                     <div class="creator">
+                        @foreach ($name as $n)                            
+                        
                         <div class="icon-image">
                             <a href="#"><img src="{{ url('image/user.png') }}"></a>
                         </div>
                         <div class="icon-words">
-                            <a href="#"><h3>kaenrpk</h3></a>
+                            <h1>Creator</h1>
+                            <a href="#"><h3>{{$n->name}}</h3></a>
                             <p>
                                
                                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -73,22 +74,48 @@
                             </p>
 
                         </div>
+                        @endforeach
                     </div>
+
+
                 @if (Auth::check())
+            <form method="POST" action="{{route('ahmed')}}" >
+                @csrf
                     <div class="comment">
                         
-                        <textarea type="text" class="input" placeholder="Write a comment" v-model="newItem" @keyup.enter="addItem()"></textarea>
-                        <button v-on:click="addItem()" class='primaryContained float-right' type="submit">Add Comment</button>
+                        <textarea type="text" class="input" placeholder="Write a comment" name="description" v-model="newItem" @keyup.enter="addItem()"></textarea>
+                        {{-- <button v-on:click="addItem()" class='primaryContained float-right' type="submit" value="POST">Add Comment</button> --}}
+                        <input class='primaryContained float-right' type="submit" value="POST">
+                        
+                    </div>
+                </form>
+                @endif
+
+                
+                @foreach ($comment as $c)
+                                    
+                <div class="creator">
+                    <div class="icon-image">
+                        <a href="#"><img src="{{ url('image/user.png') }}"></a>
+                    </div>
+                    <div class="icon-words">
+                        <a href="#"><h3>human comment</h3></a>
+                        <p>
+                            {{$c->description}}
+                        </p>
 
                     </div>
-                @endif
+                </div>
+                @endforeach
+
             </div>
             
-            <div class="main-aside">
+                <div class="main-aside">
                     <h2>Pined</h2>
                     <a href="#"><img src="{{ url('image/Elon.jpg') }}"></a>
                     
-            </div>
+                </div>
+            
         </div>
     </section>
 

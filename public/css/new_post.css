@@ -88,6 +88,17 @@ header{
     color: #317af0;
 }
 
+select {
+    transform: scale(1.5);
+    width: 200px;
+    margin-right:40px ;
+}
+
+select option{
+    font-size: 20px;
+}
+
+
 /* --------------------------------------------- */
 
 .main {

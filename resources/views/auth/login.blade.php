@@ -12,7 +12,7 @@
     <body>
 
         <header> <!----------------------HEADER------------------------>
-            <a href="/" class="logo_admin" >O BLOG</a>
+            <a href="/NewAnime" class="logo_admin" >O BLOG</a>
         </header>
 
 
@@ -62,7 +62,7 @@
 
                     <div>
                         <input type="submit" class="submit-btn" value="sign up" >
-                    </div>               
+                    </div>
                 </form>
             </div>
 
@@ -81,11 +81,11 @@
                         <label for="31">Email address</label>
 
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email address">
-                       @error('email')
-                               <span class="invalid-feedback" role="alert">
-                                   <strong>{{ $message }}</strong>
-                               </span>
-                               @enderror
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                     </div>
 
                     <div>
