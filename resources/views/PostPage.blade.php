@@ -92,17 +92,20 @@
                 @endif
 
                 
-                @foreach ($comment as $c)
+                @foreach ($commentname as $c )
                                     
                 <div class="creator">
                     <div class="icon-image">
                         <a href="#"><img src="{{ url('image/user.png') }}"></a>
+                        {{-- <a href="Profile/{{ $c->id }}"><img src="{{ url('image/avatar/'.$c->image_path) }}"></a> --}}
                     </div>
+                    {{-- @foreach ($commentname as $cn) --}}
                     <div class="icon-words">
-                        <a href="#"><h3>human comment</h3></a>
-                        <p>
-                            {{$c->description}}
-                        </p>
+
+
+                        <a href="#"><h3>{{$c->name}}</h3></a>
+
+                        <p>{{$c->description}}</p>
 
                     </div>
                 </div>

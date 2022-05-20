@@ -108,19 +108,21 @@ class PostsController extends Controller
         $s->update();
         session::put('postid', $id);
 
-        $comment = Comment::where('post_id',$id)->get();
+        // $comment = Comment::where('post_id',$id)->get();
 
         // $post->user_id = Auth::user()->name; 
         $name =Post::join('users', 'posts.user_id', '=', 'users.id')
         ->select('name')->where('posts.id',$id)
         ->get();
 
+        $commentname = Comment::join('users', 'comments.user_id', '=', 'users.id')
+        ->select('name','description')->where('comments.post_id',$id)
+        ->get();
                 
 
         $post = Post::where("id",$id)->get();
-        return view('PostPage')->with('post',$post)->with('comment',$comment)->with('name',$name);
-       
-
+        return view('PostPage')->with('post',$post)->with('commentname',$commentname)->with('name',$name);
+        
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -46,6 +48,11 @@ class commentController extends Controller
         $postid = session::get('postid');
         $post = new Comment();
         $post->post_id = $postid ;
+
+        $post->user_id = Auth::user()->id;
+        
+        // $post = User::select('user_id')->where('user_id',$user_id);
+        
         $post->description = $request->input('description');
 
         // $post = Post::where("id",$id)->get();
@@ -57,7 +64,7 @@ class commentController extends Controller
         
         
          
-        return redirect('/PostPage/'.$postid) ;
+        return redirect('/PostPage/'.$postid)  ;
         
 
     }

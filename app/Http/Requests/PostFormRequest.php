@@ -38,6 +38,13 @@ class PostFormRequest extends FormRequest
             'title' => strip_tags($this->title),
             'description' => strip_tags($this->description),
             'image_path' => strip_tags($this->image_path),
+            'category' => strip_tags($this->category),
+            'status' => strip_tags($this->status),
+            'pined' => strip_tags($this->pined),
+            'no_of_comment' => strip_tags($this->no_of_comment),
+            'views' => strip_tags($this->views),
+
+
             // 'category' => strip_tags($this->category),
             
         ]);
