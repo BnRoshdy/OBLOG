@@ -35,11 +35,14 @@ class PostsController extends Controller
             $s->views = 1;
             $s->save();
          }
-        
 
-         $posts = Post::all();
-         return view('NewAnime')->with('posts' , $posts);
-    
+        $pined= Post::where('pined','pined')->get(); 
+        $unpined= Post::where('pined','unpined')->get(); 
+        
+        // $posts =Post::all();
+        return view('NewAnime')->with('pined' , $pined)->with('unpined' , $unpined);
+        // ->with('pined',$pin)
+        // return $unpined;
     }
     
     /**
@@ -108,6 +111,7 @@ class PostsController extends Controller
         $s->update();
         session::put('postid', $id);
 
+        
         // $comment = Comment::where('post_id',$id)->get();
 
         // $post->user_id = Auth::user()->name; 

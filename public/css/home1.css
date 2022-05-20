@@ -172,14 +172,22 @@ header{
 .main-artical{
     width: 1000px;
     margin: 10px;
+	height: 800px;
     left: 0px;
     top: 0px;
 }
 
-
+/* .main-artical li img{
+transform: scale(.5);
+} */
 
 .main-artical img{
-    width: 100%;
+    width: 60%;
+}
+
+.main-artical li{
+	margin-left: 100px;
+	text-align: right;
 }
 
 .main-aside{
@@ -195,18 +203,20 @@ header{
 }
 
 .main-aside img{
-    width: 100%;
+    width: 70%;
 }
 
 .sub-content{
 	width: 70%;
 	display: inline;
 	margin-left: 30%;
+	float: right;
 }
 
 .sub-content img{
 	float: right;
 	width: 20%;
+	float: right;
 }
 .insides p{
 	color: white;
@@ -273,8 +283,9 @@ header{
 footer{
 	padding: 0px 50px;
 	background-color: #000;
-	position: relative;
+	position: static;
 	bottom: 0;
+	width: 100%;
 }
 
 .footer-top-area {

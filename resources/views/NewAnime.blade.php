@@ -49,31 +49,47 @@
     <!---------------------------------------------------->
         <div class="content1">
             <div class="main-artical">
-            <a href="#"><img src="{{ url('image/elon.jpg') }}"></a>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-            </div>
-            <div class="main-aside">
-                <h2>Pined</h2>
-                <a href="#"><img src="{{ url('image/Elon.jpg') }}"></a>
-                
-            </div>
-
-                    
-                    
-
-                    @foreach ($posts as $post)
-                        <div class="sub-content">
+            {{-- <a href="#"><img src="{{ url('image/elon.jpg') }}"></a>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p> --}}
+                        @foreach ($unpined as $p)
                         <li>
-                        <a href="PostPage/{{ $post->id }}"><img src="{{ url('image/postPic/'.$post->image_path) }}"></a>
-                        <div class="insides" style='colore:white'>
+                        <a href="PostPage/{{ $p->id }}"><img src="{{ url('image/postPic/'.$p->image_path) }}"></a>
+                        {{-- <div class="insides" style='colore:white'> --}}
 
-                        <h3 style="color: white" ><a href="PostPage/{{ $post->id }}">{{$post->title}} </a></h3>
-                        <small float='left' style="color: white">Created at {{$post->created_at}}</small>
+                        <h3 style="color: white" ><a href="PostPage/{{ $p->id }}">{{$p->title}} </a></h3>
+                        <small float='left' style="color: white">Created at {{$p->created_at}}</small>
 
                         </li>
-                        </div>            
                         @endforeach
-    
+            </div>
+
+
+            
+                                               
+                        <div class="main-aside">
+                            <h2>Pined</h2>
+                            @foreach ($pined as $p) 
+                            
+                            <a href="PostPage/{{ $p->id }}"><img src="{{ url('image/postPic/'.$p->image_path) }}"></a>
+                            {{-- <div class="insides" style='colore:white'> --}}
+
+                            <h3 style="color: white" ><a href="PostPage/{{ $p->id }}">{{$p->title}} </a></h3>
+                            @endforeach
+                            
+                            
+                        </div>
+                    </div>
+                    
+            </div>
+                        
+                   
+
+                        
+                    
+                        {{-- <div class="sub-content">
+                            
+                        </div>             --}}
+                        
                 {{-- <div class="insides">
                     <a href="#"><img src="image/Elon.jpg"></a>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
@@ -84,7 +100,7 @@
                 <div class="comment">
                     <button v-on:click="addItem()" class='primaryContained float-right' type="submit">see more</button>
                 </div>
-            </div>
+            
         </div>
         </div>
     </section>
