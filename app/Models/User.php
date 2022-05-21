@@ -18,10 +18,14 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
+        'frist_name',
+        'last_name',
         'name',
-        'email',
         'status',
+        'image_path',
+        'email',
         'password',
+
     ];
 
     /**
@@ -29,10 +33,10 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+   // protected $hidden = [
+     //   'password',
+   //     'remember_token',
+   // ];
 
     /**
      * The attributes that should be cast.

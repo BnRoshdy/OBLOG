@@ -10,7 +10,7 @@
     </head>
     <body>
         <header> <!----------------------HEADER------------------------>
-            <a href="/" class="logo_admin">O BLOG</a>
+            <a href="/" class="logo_admin">MYPCB</a>
             <div class="cust_data">
             </div>
         </header>

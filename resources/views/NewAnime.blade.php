@@ -49,13 +49,10 @@
     <!---------------------------------------------------->
         <div class="content1">
             <div class="main-artical">
-            {{-- <a href="#"><img src="{{ url('image/elon.jpg') }}"></a>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p> --}}
+            
                         @foreach ($unpined as $p)
                         <li>
                         <a href="PostPage/{{ $p->id }}"><img src="{{ url('image/postPic/'.$p->image_path) }}"></a>
-                        {{-- <div class="insides" style='colore:white'> --}}
-
                         <h3 style="color: white" ><a href="PostPage/{{ $p->id }}">{{$p->title}} </a></h3>
                         <small float='left' style="color: white">Created at {{$p->created_at}}</small>
 

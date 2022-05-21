@@ -41,8 +41,7 @@ class PostsController extends Controller
         
         // $posts =Post::all();
         return view('NewAnime')->with('pined' , $pined)->with('unpined' , $unpined);
-        // ->with('pined',$pin)
-        // return $unpined;
+        
     }
     
     /**
@@ -75,9 +74,9 @@ class PostsController extends Controller
 
         $file_extension = $request -> file -> getClientOriginalExtension();
         $file_name = time() . '.' . $file_extension;
-        $path = 'C:\xampp\htdocs\blog\public\image\postPic';
+        $path = 'C:\xampp\htdocs\blog-master\public\image\postPic';
         $request -> file -> move($path,$file_name);
-        
+
 
         $post = new Post();
         $post->user_id = Auth::user()->id;

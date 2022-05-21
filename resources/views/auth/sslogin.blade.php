@@ -5,16 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>sign in</title>
-        <link rel="stylesheet" href="{{url('css/login.css')}}">
+        <link rel="stylesheet" href="css/login.css">
         <script src="https://kit.fontawesome.com/2924b03037.js" crossorigin="anonymous"></script>
 
     </head>
     <body>
 
         <header> <!----------------------HEADER------------------------>
-            <a href="/NewAnime" class="logo_admin">O BLOG</a>
+            <a href="/" class="logo_admin">MYPCB</a>
 
         </header>
+
+
+
             <div class="sign_up">
                     <h3>sign in</h3>
                     <div>
@@ -24,11 +27,11 @@
                            <div>
                                <label for="22">Email</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email address">
-                                @error('email')
+                               @error('email')
                                        <span class="invalid-feedback" role="alert">
                                            <strong>{{ $message }}</strong>
                                        </span>
-                                @enderror
+                                       @enderror
                            </div>
                     </div>
                     <label for="32">password</label>

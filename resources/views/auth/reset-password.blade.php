@@ -12,7 +12,7 @@
     <body>
 
         <header> <!----------------------HEADER------------------------>
-            <a href="/" class="logo_admin">O BLOG</a>
+            <a href="/" class="logo_admin">BCPWAY</a>
             <div class="cust_data">
             </div>
         </header>

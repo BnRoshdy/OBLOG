@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>Register</title>
-        <link rel="stylesheet" href="{{url('css/login.css')}}">
+        <link rel="stylesheet" href="css/login.css">
         <script src="https://kit.fontawesome.com/2924b03037.js" crossorigin="anonymous"></script>
 
     </head>
     <body>
 
         <header> <!----------------------HEADER------------------------>
-            <a href="/" class="logo_admin">O BLOG</a>
+            <a href="/" class="logo_admin">MYPCB</a>
             <div class="cust_data">
             <a href="#">My Account</a>
             <a href="#">My Cart</a>
