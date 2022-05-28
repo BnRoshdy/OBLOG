@@ -22,6 +22,9 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'gender'=>['required'],
             'email' => [
                 'required',
                 'string',
@@ -31,12 +34,13 @@ class CreateNewUser implements CreatesNewUsers
             ],
             'password' => $this->passwordRules(),
         ])->validate();
-
+            $input['gender'] == 'male'? $path = 'image\user.png' : $path = 'image\female.jpg';
         return User::create([
             'name' => $input['name'],
-            'frist_name' =>'frist',
-            'last_name' => 'last',
-            'image_path'=> 'path',
+            'first_name' =>$input['first_name'],
+            'last_name' => $input['last_name'],
+            'image_path'=> $path,
+            'gender' => $input['gender'],
             'email' => $input['email'],
             'status' => 'basic',
             'password' => Hash::make($input['password']),

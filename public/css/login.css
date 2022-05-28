@@ -82,6 +82,7 @@ header{
     
 }
 
+
 form label{
     display: flex;
     font-size: 14px;
@@ -143,6 +144,7 @@ select{
 }
 .check{
     display: flex;
+    justify-content: center;
 }
 
 form a{
@@ -155,5 +157,18 @@ form a{
 .pr{
     font-size: 13px;
     margin:10px 0px 0px 20px;
+}
+
+
+
+
+.gender {
+    display: flex;
+    align-items: center;
+}
+
+#g-radio{
+    margin-left: 50px;
+    width: 10px;
 }
 

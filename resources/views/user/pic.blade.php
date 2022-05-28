@@ -16,9 +16,9 @@
 <body>
     <header> <!----------------------HEADER------------------------>
         <div class="cust_data">
-            <a href="#">sign in/up</a>
+            
         </div>
-        <a href="#" class="logo_admin">o blog</a>
+        <a href="/" dir="rtl" class="logo_admin">o blog</a>
     </header><!---------------------------------------------------->
 
 
@@ -27,13 +27,10 @@
     <!-------------------NAVBAR--------------------------->
     <section class="sticky">
         <div class="navbar">
-            <ul>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
+            <ul dir="rtl">
+                <li><a href="/">NewAnime </a></li>
+                <li><a href="/Movies">Movies</a></li>                
+                <li><a href="/Manga">Manga</a></li>
             </ul>
         </div>
     </section>
@@ -44,7 +41,7 @@
                 <div class="custom-file">
                     <label for="fileupload">
                         <div class="profile-images">
-                        <img src="img/user.png" id="upload-img">
+                        <img src="image/user.png" id="upload-img">
                         </div>
                     </label>
                     <input type="file" id="fileupload">
@@ -58,16 +55,15 @@
             <div class="picture">
                 <a href="#">
                     <i class="fa-solid fa-pen"></i>
-                    <!-- <i class="fa-light fa-pen"></i> -->
-                    <!-- <i class="far fa-pencil-alt"></i> -->
+                    
                 </a>
-                <img src="img/user.png" alt="">
+                <img src="{{url('image/user.png')}}" alt="">
                 <div>User name</div>
             </div>
             <div class="list">
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="/">
                             <div>Home</div>
                             <i class="fa-solid fa-house-chimney"></i>
                         </a>
@@ -101,10 +97,11 @@
                     </li>
                 </ul>
                 <div class="out">
-                    <a href="">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <span>Sign Out</span>
-                    </a>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method = "POST" >
+                        @csrf
+                        </form>
                 </div>
             </div>
         </div>

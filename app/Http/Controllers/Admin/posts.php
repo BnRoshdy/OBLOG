@@ -55,7 +55,8 @@ else if ($button == "Edit") {
 }
 else if ($button == "Pin/UnPin") {
     $pin=Post::where('id',session::get('postid'))->get();
-    if($this->g($pin ,'pined')!='pined'){
+    $pinnum=sizeof(Post::where('pined','pined')->get());
+    if($this->g($pin ,'pined')!='pined' && $pinnum <=1){
     $s = new Post ;
     Post::where('id',session::get('postid'))->update(array('pined'=>'pined'));
     $s->update();

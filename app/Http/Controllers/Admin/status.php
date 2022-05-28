@@ -22,7 +22,7 @@ class status extends Controller
             ->whereyear('created_at', Carbon::now()->year)->get();
             
           return view('admin.status')->with('visitor',json_encode($this->yd()))->with('datas' ,$monthlyp)->with('datao',$this->g($monthlyv,'views'))->with('datau',$monthlyu) ;
-            return view('admin.status');
+    
     }
     // private function dwcs($table,$s=array()){
     

@@ -17,14 +17,23 @@
         document.getElementById('logout-form').submit();">logout</a>
         <form id="logout-form" action="{{ route('logout') }}" method = "POST" >
           @csrf
-      </form>
-@else
-<a href="/login">login / register</a>
+        </form>
 
-@endif
+        @foreach($data as $x)
+        <div  class="avatar">
+            <a href="{{ route('user.profile') }}"><img src="{{url($x->image_path)}}" alt="img"></a>
+            <a href="{{ route('user.profile') }}"><h3>{{$x->first_name.' '.$x->last_name}}</h3></a>
+        </div>
+        @endforeach
+
+        @else
+        <a href="/login">login / register</a>
+
+        @endif
         </div>
         <a href="/" class="logo_admin">OBLOG</a>
-    </header><!---------------------------------------------------->
+        </header>
+    <!---------------------------------------------------->
 
 
 
@@ -37,7 +46,6 @@
                 <li><a href="/">NewAnime </a></li>
                 <li><a href="/Movies">Movies</a></li>                
                 <li><a href="/Manga">Manga</a></li>
-                <li><a href="/recommend">Recommend</a></li>
             </ul>
         
         
@@ -59,22 +67,16 @@
                     @endforeach
 
                     <div class="creator">
-                        @foreach ($name as $n)                            
+                                           
                         
                         <div class="icon-image">
-                            <a href="#"><img src="{{ url('image/user.png') }}"></a>
+                            <a ><img src="{{ url($image_path) }}"></a>
                         </div>
                         <div class="icon-words">
                             <h1>Creator</h1>
-                            <a href="#"><h3>{{$n->name}}</h3></a>
-                            <p>
-                               
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                voluptatem deleniti porro vitae amet iste totam vero.
-                            </p>
-
+                            <a ><h3>{{$name}}</h3></a>
+                           
                         </div>
-                        @endforeach
                     </div>
 
 <!------------------------------------------------------------------------------------------------------>
@@ -97,12 +99,12 @@
                                     
                 <div class="creator">
                     <div class="icon-image">
-                        <a href="#"><img src="{{ url('image/user.png') }}"></a>
+                        <a ><img src="{{ url($c->image_path) }}"></a>
                         {{-- <a href="Profile/{{ $c->id }}"><img src="{{ url('image/avatar/'.$c->image_path) }}"></a> --}}
                     </div>
                     <div class="icon-words">
 
-                        <a href="#"><h3>{{$c->name}}</h3></a>
+                        <a ><h3>{{$c->name}}</h3></a>
                         <p>{{$c->description}}</p>
 
                     </div>
@@ -111,11 +113,18 @@
 
             </div>
             
-                <div class="main-aside">
-                    <h2>Pined</h2>
-                    <a href="#"><img src="{{ url('image/Elon.jpg') }}"></a>
-                    
-                </div>
+            <div class="main-aside">
+                <h2>Pined</h2>
+                @foreach ($pined as $p) 
+                
+                <a href={{"/PostPage/".$p->id}}><img src="{{ url('image/postPic/'.$p->image_path) }}"></a>
+                {{-- <div class="insides" style='colore:white'> --}}
+
+                <h3 style="color: white" ><a href={{"/PostPage/".$p->id}}>{{$p->title}} </a></h3>
+                @endforeach
+                
+                
+            </div>
             
         </div>
     </section>

@@ -16,27 +16,24 @@
 <body>
     <header> <!----------------------HEADER------------------------>
         <div class="cust_data">
-            <a href="#">sign in/up</a>
+            
         </div>
-        <a href="#" class="logo_admin">o blog</a>
+        <a href="/" class="logo_admin">o blog</a>
     </header><!---------------------------------------------------->
 
 
 
-    <section>
     <!-------------------NAVBAR--------------------------->
     <section class="sticky">
         <div class="navbar">
-            <ul>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
+            <ul dir="rtl">
+                <li><a href="/">NewAnime </a></li>
+                <li><a href="/Movies">Movies</a></li>                
+                <li><a href="/Manga">Manga</a></li>
             </ul>
         </div>
     </section>
+
     <!-- ----------------------------------------------------- -->
     <div class="main">
         <div class="content">
@@ -70,6 +67,7 @@
                                         <strong>{{ $errors->first('current_password') }}</strong>
                                     </span>
                                 @endif
+                    </div>
                     
                     <div class="input-box">
                         <label for="21">New Password</label>
@@ -90,25 +88,22 @@
                 <div class="up" >
                     <input  type="submit" class="btn btn-primary" value="Update">
                 </div>
-                
-                
             </form>
-
-        </div>
-        <div class="card">
+            
+            @foreach($data as $x)
+            </div>
+            <div class="card">
             <div class="picture">
-                <a href="#">
-                    <i class="fa-solid fa-pen"></i>
-                    <!-- <i class="fa-light fa-pen"></i> -->
-                    <!-- <i class="far fa-pencil-alt"></i> -->
-                </a>
-                <img src="img/user.png" alt="">
-                <div>User name</div>
+               
+                <img src="{{url($x->image_path)}}" alt="">
+                <div>{{$x->first_name.' '.$x->last_name}}</div>
+           
+            @endforeach
             </div>
             <div class="list">
-                <ul>             
+                <ul>
                     <li>
-                        <a href="{{ url('/home') }}">
+                        <a href="{{ url('/') }}">
                             <div>Home</div>
                             <i class="fa-solid fa-house-chimney"></i>
                         </a>
@@ -116,7 +111,7 @@
                     <li>
                         <a href="{{ route('user.profile') }}">
                             <div>My Profile</div>
-                            <i class="fa-solid fa-house-chimney"></i>
+                            <i class="fa-solid fa-user-pen"></i>
                         </a>
                     </li>
                     <li>
@@ -131,21 +126,23 @@
                             <i class="fa-solid fa-key"></i>
                         </a>
                     </li>
+                   
                     <li>
-                        <a href="#">
+                        <a href="{{ route('user.comments') }}">
                             <div>My Comments</div>
                             <i class="fa-solid fa-comments"></i>
                         </a>
                     </li>
-                    <li>
-                        <a href=""></a>
-                    </li>
+
                 </ul>
                 <div class="out">
-                    <a href="">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <span>Sign Out</span>
-                    </a>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method = "POST" >
+                        @csrf
+                        </form>
+              
+
                 </div>
             </div>
         </div>

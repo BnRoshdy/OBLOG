@@ -16,45 +16,42 @@
 <body>
     <header> <!----------------------HEADER------------------------>
         <div class="cust_data">
-            <a href="#">sign in/up</a>
+            
         </div>
-        <a href="#" class="logo_admin">o blog</a>
+        <a href="/" class="logo_admin">o blog</a>
     </header><!---------------------------------------------------->
 
 
 
-    <section>
+   
     <!-------------------NAVBAR--------------------------->
     <section class="sticky">
         <div class="navbar">
-            <ul>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
+            <ul dir="rtl">
+                <li><a href="/">NewAnime </a></li>
+                <li><a href="/Movies">Movies</a></li>                
+                <li><a href="/Manga">Manga</a></li>
             </ul>
         </div>
     </section>
     <!-- ----------------------------------------------------- -->
     <div class="main">
         <div class="content">
-             <form method="POST" class="user" action="{{ route('user.edit') }}">
+             <form method="POST" class="user" action="{{ route('user.edit') }}" enctype="multipart/form-data" >
             @csrf
             @foreach ($data as $a)
                 <div class="info">
                     <div class="input-box">
                         <label for="20">first Name</label>
-                        <input type="text" id="20" name="first name" value="{{$a->first_name}}">
+                        <input type="text" id="20" name="first_name" value="{{$a->first_name}}">
                     </div>
                     <div class="input-box">
                         <label for="Last">Last Name</label>
-                        <input type="text" id="21"  name="last name" value="{{$a->last_name}}">
+                        <input type="text" id="21"  name="last_name" value="{{$a->last_name}}">
                     </div>
                     <div class="input-box">
                         <label for="User">User_name</label>
-                        <input type="text" id="23" name="user name" value="{{$a->user_name}}" >
+                        <input type="text" id="23" name="name" value="{{$a->name}}" >
                     </div>
                     <div class="input-box">
                         <label for="Email">Email</label>
@@ -62,30 +59,40 @@
                     </div>
                   
                 </div>
-             @endforeach;
+            
    
                 <div class="up" >
                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Update">
                 </div>
                 
     
-            </form>
 
         </div>
         <div class="card">
             <div class="picture">
-                <a href="#">
-                    <i class="fa-solid fa-pen"></i>
-                    <!-- <i class="fa-light fa-pen"></i> -->
-                    <!-- <i class="far fa-pencil-alt"></i> -->
-                </a>
-                <img src="img/user.png" alt="">
-                <div>User name</div>
+                <label for="file"><a >
+                    <label for="file"><i class ="fa-solid fa-pen"></i></label>
+                          <input
+                          style="display:none ; visibility :none"
+                              type="file"
+                              
+                              name="file"
+                              id="file"
+                              class="hidden"/>
+      
+                      </a></label>
+                <img src="{{url($a->image_path)}}" alt="">
+
+                
+
+                <div>{{$a->first_name.' '.$a->last_name}}</div>
+                @endforeach
+            </form>
             </div>
             <div class="list">
                 <ul>
                     <li>
-                        <a href="{{ url('/home') }}">
+                        <a href="{{ url('/') }}">
                             <div>Home</div>
                             <i class="fa-solid fa-house-chimney"></i>
                         </a>
@@ -118,10 +125,11 @@
               
                 </ul>
                 <div class="out">
-                    <a href="{{ route('logout') }}">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <span>Sign Out</span>
-                    </a>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method = "POST"  >
+                        @csrf
+                        </form>
                 </div>
             </div>
         </div>

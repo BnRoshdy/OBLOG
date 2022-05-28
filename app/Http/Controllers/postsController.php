@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\User;
-
+use App\Http\Requests\PostRequest;
 use App\Models\View;
 use Carbon\Carbon;
-use App\Http\Requests\PostFormRequest;
 use Illuminate\Support\Facades\Auth;
 use Session;
 
@@ -21,6 +21,30 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {   
+        $s = new View;
+        $date = sizeof(View::select('views')->whereMonth('created_at', Carbon::now())
+                        ->whereyear('created_at', Carbon::now())->get());
+        if ($date!=0) {
+        View::increment('views');
+        $s->update();
+        }
+         else{
+            $s->views = 1;
+            $s->save();
+         }
+
+        Auth::check()? $data = User::where('id', Auth::user()->id)->get():$data = 0;
+    
+
+        $pined= Post::where('pined','pined')->get(); 
+        $unpined= Post::where('pined','unpined')->where('status' , 'confirmed')->where('category','New Anime')->get(); 
+        
+            return view('NewAnime')->with('pined' , $pined)->with('unpined' , $unpined)->with('data' , $data);
+    
+        
+    }
+    public function indexmo()
     {   
         
         
@@ -36,11 +60,42 @@ class PostsController extends Controller
             $s->save();
          }
 
+        Auth::check()? $data = User::where('id', Auth::user()->id)->get():$data = 0;
+
         $pined= Post::where('pined','pined')->get(); 
-        $unpined= Post::where('pined','unpined')->get(); 
+        $unpined= Post::where('pined','unpined')->where('status' , 'confirmed')->where('category','Movies')->get(); 
         
-        // $posts =Post::all();
-        return view('NewAnime')->with('pined' , $pined)->with('unpined' , $unpined);
+            return view('Movies')->with('pined' , $pined)->with('unpined' , $unpined)->with('data' , $data);
+    
+        
+    }
+    public function indexma()
+    {   
+        
+        
+        $s = new View;
+        $date = sizeof(View::select('views')->whereMonth('created_at', Carbon::now())
+                        ->whereyear('created_at', Carbon::now())->get());
+        if ($date!=0) {
+        View::increment('views');
+        $s->update();
+        }
+         else{
+            $s->views = 1;
+            $s->save();
+         }
+
+        
+
+
+        Auth::check()? $data = User::where('id', Auth::user()->id)->get():$data = 0;
+    
+
+        $pined= Post::where('pined','pined')->get(); 
+        $unpined= Post::where('pined','unpined')->where('status' , 'confirmed')->where('category','Manga')->get(); 
+        
+            return view('Manga')->with('pined' , $pined)->with('unpined' , $unpined)->with('data' , $data);
+    
         
     }
     
@@ -62,15 +117,11 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         
-        // $data = $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        //     'image_path' => 'required',
-        //     'category' => 'required'
-        // ]);
+        $data = $request->validated();
+       
 
         $file_extension = $request -> file -> getClientOriginalExtension();
         $file_name = time() . '.' . $file_extension;
@@ -80,13 +131,10 @@ class PostsController extends Controller
 
         $post = new Post();
         $post->user_id = Auth::user()->id;
-        $post->title = $request->input('title');
-        $post->category = $request->input('category');
-        $post->description = $request->input('description');
-        // $post->title = $data['title'];
-        // $post->description = $data['description'];
-        $post -> image_path = $file_name;
-        // $post->category = $data->input['category'];
+        $post->title = $data['title'];
+        $post->category = $data['category'];
+        $post->description = $data['description'];
+        $post->image_path = $file_name;
         $post->status = 'unconfirmed';
         $post->pined = 'unpined';
         $post->views = 0;
@@ -105,27 +153,47 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        $pt =session::get('postid');
+        
+        if ($pt != $id) {
+            
         $s = new Post;
         Post::where('id',$id)->increment('views');
         $s->update();
-        session::put('postid', $id);
+            
+        }
 
+        
+        // session::put('posts', 1 );
+        session::put('postid', $id);
+        $pined= Post::where('pined','pined')->get(); 
         
         // $comment = Comment::where('post_id',$id)->get();
-
+        Auth::check()? $data = User::where('id', Auth::user()->id)->get():$data = 0;
         // $post->user_id = Auth::user()->name; 
-        $name =Post::join('users', 'posts.user_id', '=', 'users.id')
-        ->select('name')->where('posts.id',$id)
-        ->get();
+        if($this->d(Post::where('posts.id',$id)->get(),'user_id')==1 ){ 
+            $name ='admin';
+            $image_path='image/123.png';
+        }
+
+         else{
+            $name =$this->d(Post::join('users', 'posts.user_id', '=', 'users.id')
+            ->select('users.name')->where('posts.id',$id)
+            ->get(),'name');
+            $image_path=$this->d(Post::join('users', 'posts.user_id', '=', 'users.id')
+            ->select('users.image_path')->where('posts.id',$id)
+            ->get(),'image_path');
+      
+         }
 
         $commentname = Comment::join('users', 'comments.user_id', '=', 'users.id')
-        ->select('name','description')->where('comments.post_id',$id)
+        ->select('name','description' , 'image_path')->where('comments.post_id',$id)
         ->get();
-                
 
         $post = Post::where("id",$id)->get();
-        return view('PostPage')->with('post',$post)->with('commentname',$commentname)->with('name',$name);
-        
+
+        return view('PostPage')->with('post',$post)->with('commentname',$commentname)->with('image_path',$image_path)->with('name',$name)->with('pined',$pined)->with('data',$data);
+     
     }
 
     /**
@@ -147,7 +215,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostFormRequest $request ,Post $post)
+    public function update(PostRequest $request ,Post $post)
     {
         // $data = $request->validate();
         // $post->title = $data['title'];
@@ -174,4 +242,9 @@ class PostsController extends Controller
         //
 
     }
+    private function d($s , $x){
+    foreach ($s as $a)
+    return $a->$x ;
+    }
+    
 }

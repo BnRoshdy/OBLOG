@@ -38,9 +38,8 @@
     <!-- ----------------------------------------------------- -->
     <div class="main">
         <div class="content">
-
             
-            <div>
+            <div>                
                 <form action="/create" method="POST" enctype="multipart/form-data">
                 @csrf
 
@@ -50,9 +49,8 @@
 
                 <select name="category" id="category"  style="color: white text-color:black width:300px" >
                     <option  value ="New Anime"> New Anime  </option>
-                    <option  value ="Movies"> Movies        </option>
-                    <option  value ="Recommend">Recommend   </option>
-                    <option  value ="Manga">Manga           </option>
+                    <option  value ="Movies">    Movies     </option>
+                    <option  value ="Manga">     Manga      </option>                    
                 </select>                     
 
                 <textarea type="text" name="description" class="input" placeholder="What's on your mind" v-model="newItem" @keyup.enter="addItem()"
@@ -70,8 +68,7 @@
                     
                 </label>
 
-            </div> 
-                                                 
+            </div>         
 
             <div class="bg-grey-lighter pt-15" style="color:white">
                 <label class="w-44 flex flex-col items-center px-2 py-3 bg-white-rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer"  style="font-size: 20px">
@@ -93,9 +90,6 @@
         </div>
     </div>
 
-    
-    
-            
 </body>
 
 </html>

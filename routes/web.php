@@ -7,7 +7,8 @@ use App\Http\controllers\UserProfile;
 use App\Http\controllers\MyComments;
 use App\Http\Controllers\postsController;
 use App\Http\Controllers\commentController;
-
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\plans;
 
 
 
@@ -21,9 +22,7 @@ use App\Http\Controllers\commentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('Home');
-});
+
 
 
 Route::prefix('user')->middleware(['auth','verified'])->name('user.')->group(function () {  
@@ -31,6 +30,9 @@ Route::prefix('user')->middleware(['auth','verified'])->name('user.')->group(fun
     Route::post('/edit',[users::class , 'postdata'])->name('edit');
     Route::get('/prof', [UserProfile::class , 'profiledata'])->name('profile') ;
     Route::get('/mycomments', [MyComments::class , 'commentdata'])->name('comments') ;
+    
+Route::get('/plan',[plans::class,'index'])->name('plan');
+Route::post('/plan',[plans::class,'update'])->name('plan');
    // Route::get('/mycomments', function(){
     //    return view('user.mycomments');
    // });
@@ -40,18 +42,21 @@ Route::prefix('user')->middleware(['auth','verified'])->name('user.')->group(fun
 
 });
 
-
-Route::get('/home', function () {
+Route::get('/', function () {
     dd(\Illuminate\Support\Facades\Auth::user());
 })->middleware(['auth', 'verified']);
 
 
+
 Route::get('/',[postsController::class , 'index']);
+Route::get('/Movies',[postsController::class , 'indexmo']);
+Route::get('/Manga',[postsController::class , 'indexma']);
+
 
 Route::get('/PostPage/{id}',[postsController::class , 'show']);
 
-Route::get('/create',[postsController::class , 'create']);
-Route::post('/create',[postsController::class , 'store']);  
+Route::get('/create',[postsController::class , 'create'])->middleware(['check']);
+Route::post('/create',[postsController::class , 'store'])->middleware(['check']);  
 
 Route::post('/comment',[commentController::class , 'show']);
 Route::post('/comment',[commentController::class , 'store'])->name('ahmed');

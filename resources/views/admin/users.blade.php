@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">  
         <meta charset="UTF-8">
         <title>ADMIN USERS </title>
-        <link rel="stylesheet" href="{{ url('css/admin/admin.css') }}">
+        <link rel="stylesheet" href="{{ url('css/adminx.css') }}">
         <script src="https://kit.fontawesome.com/2924b03037.js" crossorigin="anonymous"></script>
 
     </head>
@@ -45,12 +45,7 @@
                 <div>user data</div>
             </a>
         </li>
-        <li class="premium-plan">
-            <a href="{{ route('admin.plan') }}">
-                <i class="fas fa-dollar-sign"></i>
-                <div>premium plan</div>
-            </a>
-        </li>
+        
         
     </ul>
 </div>
@@ -59,6 +54,15 @@
 
     <form class="form0" method="POST" action="{{ route('admin.user') }}">
         @csrf
+        <input class="favorite styled"
+        type="test"
+        name = "message"
+        placeholder="message"
+        >
+        <input class="favorite styled"
+        type="submit"
+        name = "submit"
+        value="Send">
         <input class="favorite styled"
         type="submit"
         name = "submit"

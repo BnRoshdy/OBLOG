@@ -19,20 +19,34 @@
         document.getElementById('logout-form').submit();">logout</a>
         <form id="logout-form" action="{{ route('logout') }}" method = "POST" >
           @csrf
+
       </form>
+    
+    
+        @foreach($data as $x)
+        <div  class="avatar">
+            <a href="{{ route('user.profile') }}"><img src="{{url($x->image_path)}}" alt="img"></a>
+            <a href="{{ route('user.profile') }}"><h3>{{$x->first_name.' '.$x->last_name}}</h3></a>
+        </div>
+        @endforeach
+          
+        
+
     @else
     <a href="/login">login / register</a>
 
     @endif
-
-        </div>
-        <a href="/" class="logo_admin">O BLOG</a>
+    
         
+
+</div> 
+        <a href="/" class="logo_admin"> O BLOG</a>
+    
     </header><!---------------------------------------------------->
 
 
 
-    <section>
+    
     <!-------------------NAVBAR--------------------------->
     
     <section class="sticky">
@@ -41,7 +55,6 @@
                 <li><a href="/">NewAnime </a></li>
                 <li><a href="/Movies">Movies</a></li>                
                 <li><a href="/Manga">Manga</a></li>
-                <li><a href="/recommend">Recommend</a></li>
             </ul>
         </div>
     </section>
@@ -59,44 +72,20 @@
                         </li>
                         @endforeach
             </div>
-
-
-            
-                                               
+                                                           
                         <div class="main-aside">
                             <h2>Pined</h2>
                             @foreach ($pined as $p) 
                             
                             <a href="PostPage/{{ $p->id }}"><img src="{{ url('image/postPic/'.$p->image_path) }}"></a>
-                            {{-- <div class="insides" style='colore:white'> --}}
-
                             <h3 style="color: white" ><a href="PostPage/{{ $p->id }}">{{$p->title}} </a></h3>
-                            @endforeach
-                            
-                            
+                            @endforeach                                                        
                         </div>
                     </div>
                     
-            </div>
-                        
-                   
-
-                        
-                    
-                        {{-- <div class="sub-content">
-                            
-                        </div>             --}}
-                        
-                {{-- <div class="insides">
-                    <a href="#"><img src="image/Elon.jpg"></a>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                </div> --}}
-
+            </div>                                   
                 
                 
-                <div class="comment">
-                    <button v-on:click="addItem()" class='primaryContained float-right' type="submit">see more</button>
-                </div>
             
         </div>
         </div>

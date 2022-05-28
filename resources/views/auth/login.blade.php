@@ -15,7 +15,6 @@
             <a href="/" class="logo_admin" >O BLOG</a>
         </header>
 
-
         <div class="flex">
             <h2>Join / sign in</h2>
             <div class="create">
@@ -32,7 +31,25 @@
                          @enderror
                     </div>
                     <div>
-                        <label for="22">Email address</label>
+                        <label for="23">Frist Name</label>
+                        <input id="name" type="text" name="first_name" class="form-control form-control-user @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus placeholder="Enter your name">
+                        @error('first_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                         @enderror
+                    </div>
+                    <div>
+                        <label for="24">Last Name</label>
+                        <input id="name" type="text" name="last_name" class="form-control form-control-user @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus placeholder="Enter your name">
+                        @error('last_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                         @enderror
+                    </div>
+                    <div>
+                        <label for="25">Email</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email address">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -41,7 +58,7 @@
                         @enderror
                     </div>
                     <div>
-                        <label for="23">Create password</label>
+                        <label for="26">Create password</label>
                         <input id="password" type="password" name="password" class="form-control form-control-user @error('password') is-invalid @enderror" required autocomplete="new-password" placeholder="password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -51,7 +68,7 @@
                     </div>
 
                     <div>
-                        <label for="24">confirm password</label>
+                        <label for="27">confirm password</label>
                         <input id="password-confirm" type="password"class="form-control form-control-user" name="password_confirmation" required autocomplete="new-password" placeholder="confirm password">
                         @error('password_confirmation')
                             <span class="invalid-feedback" role="alert">
@@ -59,6 +76,19 @@
                             </span>
                         @enderror
                     </div>
+                    
+                   <div class="gender">
+                        <label for="28">Gender</label>
+                        <input type="radio" id="g-radio" name="gender" value="male">
+                        <label for="male">male</label>
+                        <input type="radio" id="g-radio" name="gender" value="female">
+                        <label for="female">female</label>
+                        @error('gender')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        </div>
 
                     <div>
                         <input type="submit" class="submit-btn" value="sign up" >

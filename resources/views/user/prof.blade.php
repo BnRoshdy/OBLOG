@@ -15,18 +15,11 @@
 
 <body>
     <header> <!----------------------HEADER------------------------>
-        <a href="#" class="logo_admin">o blog</a>
-        @if(Auth::check())
-        
-        <a href="{{ route('logout') }}" onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();">logout</a>
-        <form id="logout-form" action="{{ route('logout') }}" method = "POST" >
-          @csrf
-      </form>
-    @else
-    <a href="/login">login / register</a>
+        <a href="/" class="logo_admin">o blog</a>
 
-    @endif
+
+         
+        
     </header><!---------------------------------------------------->
 
 
@@ -35,13 +28,10 @@
     <!-------------------NAVBAR--------------------------->
     <section class="sticky">
         <div class="navbar">
-            <ul>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
-                <li><a href="#">home</a></li>
+            <ul dir="rtl">
+                <li><a href="/">NewAnime </a></li>
+                <li><a href="/Movies">Movies</a></li>                
+                <li><a href="/Manga">Manga</a></li>
             </ul>
         </div>
     </section>
@@ -62,31 +52,41 @@
                     </div>
                     <div class="input-box">
                         <label for="User">User_name</label>
-                        <input type="text" id="23" name="user name" value="{{$x->user_name}}" readonly>
+                        <input type="text" id="23" name="user name" value="{{$x->name}}" readonly>
                     </div>
                     <div class="input-box">
                         <label for="Email">Email</label>
                         <input type="email" id="24"  name="email" value="{{$x->email}}" readonly>
                     </div>
                 </div>
-            @endforeach;    
-                
-            </form>
-
+                @if($flage == 0)
+                <div class="up" >
+                    <label for ="a"><input type="submit" class="btn btn-primary btn-user btn-block" value="view plan" onclick="event.preventDefault();document.getElementById('a').click();"></label>
+                    <a href="{{route('user.plan')}}" id ='a'></a>
+                    
+                </div>
+                @else
+                <div class="up" >
+                    <label for ="a"><input type="submit" class="btn btn-primary btn-user btn-block" value="make post" onclick="event.preventDefault();document.getElementById('a').click();"></label>
+                    <a href="\create" id ='a'></a>
+                </div>
+                    @endif
+           
         </div>
+        
         <div class="card">
             <div class="picture">
-                <img src="{{url('img/user.png')}}" alt="">
-                    <!-- <i class="fa-light fa-pen"></i> -->
-                    <!-- <i class="far fa-pencil-alt"></i> -->
-                </a>
-                <img src="img/user.png" alt="">
-                <div>User name</div>
+                <img src="{{url($x->image_path)}}" alt="">
+                    <div>{{$x->first_name.' '.$x->last_name}}</div>
             </div>
+            @endforeach    
+            </form>
+
+
             <div class="list">
                 <ul>
                     <li>
-                        <a href="{{ url('/home') }}">
+                        <a href="{{ url('/') }}">
                             <div>Home</div>
                             <i class="fa-solid fa-house-chimney"></i>
                         </a>
@@ -119,10 +119,13 @@
 
                 </ul>
                 <div class="out">
-                    <a href="">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <span>Sign Out</span>
-                    </a>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method = "POST" >
+                        @csrf
+                        </form>
+              
+
                 </div>
             </div>
         </div>

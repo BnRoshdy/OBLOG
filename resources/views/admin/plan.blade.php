@@ -45,12 +45,7 @@
                 <div>user data</div>
             </a>
         </li>
-        <li class="premium-plan">
-            <a >
-                <i class="fas fa-gem"></i>
-                <div>premium plan</div>
-            </a>
-        </li>
+        
         
     </ul>
 </div>

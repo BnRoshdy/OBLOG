@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -32,5 +32,16 @@ class users extends Controller
             $data2->delete(); 
             return redirect(route('admin.user'));
    } 
+   else if ($button == "Send") {
+    $id = $request->input('radio');
+    $message = $request->input('message');
+    $details = [
+        'title' => 'Mail from oblog admin',
+        'body' => $message
+    ];
+   $email = User::select('email')->where('id',$id)->get();
+    Mail::to($email)->send(new \App\Mail\MyTestMail($details));
+    return redirect(route('admin.user'));
+}
 }
 }

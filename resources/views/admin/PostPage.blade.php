@@ -33,7 +33,7 @@
     <section>
         <form class="form0"  method="POST" action"{{ route('admin.vposts') }}:>
             @csrf
-            <input  class="favorite styled" type="submit" name="submit" value="Confirm">
+            <input class="favorite styled" type="submit" name="submit" value="Confirm">
             <input class="favorite styled" type="submit" name="submit" value="Delete">
             <input class="favorite styled" type="submit" name ="submit" value="Edit">
             <input class="favorite styled" type="submit" name ="submit" value="Pin/UnPin">
@@ -54,8 +54,6 @@
             </div>
         </div>
     </section>
-
-
 
     <!---------------------footer------------------------->
     <footer>

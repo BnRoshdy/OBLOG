@@ -16,9 +16,14 @@ class MyComments extends Controller
     {
 
 
-            $data = Comment::where('user_id', Auth::user()->id)->get();
+            $data = Comment::select("description")->where('user_id', Auth::user()->id)->get();
+            $data0 = User::where('id', Auth::user()->id)->get();
+            $commentname = Post::join('comments', 'comments.post_id', '=', 'posts.id')->where('comments.user_id',Auth::user()->id)->get();
+   
+      
 
-            return view('user.mycomments')->with('data',$data);
+            return view('user.mycomments')->with('data',$commentname)->with('data0',$data0);
+
         
     }    
 }

@@ -45,12 +45,12 @@
                     <div>user data</div>
                 </a>
             </li>
-            <li class="premium-plan">
+            {{-- <li class="premium-plan">
                 <a href="{{ route('admin.plan') }}">
                     <i class="fas fa-dollar-sign"></i>
                     <div>premium plan</div>
                 </a>
-            </li>
+            </li> --}}
             
         </ul>
     </div>

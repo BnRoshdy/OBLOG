@@ -44,7 +44,6 @@
                 <select name="category" id="category"  style="color: white text-color:black width:300px" >
                     <option  value ="New Anime"> New Anime  </option>
                     <option  value ="Movies"> Movies        </option>
-                    <option  value ="Recommend">Recommend   </option>
                     <option  value ="Manga">Manga           </option>
                 </select>                     
 
@@ -60,7 +59,6 @@
                     <span class="mt-2 text-base leading-normal">
 
                     </span>
-                    
                 </label>
 
             </div> 
@@ -69,7 +67,7 @@
             <div class="bg-grey-lighter pt-15" style="color:white">
                 <label class="w-44 flex flex-col items-center px-2 py-3 bg-white-rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer"  style="font-size: 20px">
                     <span class="mt-2 text-base leading-normal">
-                        Select a file
+                        Select
                     </span>
                     <input  style="font-size: 20px"
                         type="file"

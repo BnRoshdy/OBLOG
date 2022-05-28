@@ -35,8 +35,8 @@ Route::group(['as' => 'admin.'], function() {
     Route::post('/vposts', [posts::class , 'updatev'])->name('vposts');
     Route::get('/user', [users::class , 'getdata'])->name('user');
     Route::post('/user', [users::class , 'update'])->name('user');
-	Route::get('/plan', [plans::class , 'getdata'])->name('plan');
-    Route::post('/plan', [plans::class , 'update'])->name('plan');
+	//   Route::get('/plan', [plans::class , 'getdata'])->name('plan');
+  //   Route::post('/plan', [plans::class , 'update'])->name('plan');
 
   });
 

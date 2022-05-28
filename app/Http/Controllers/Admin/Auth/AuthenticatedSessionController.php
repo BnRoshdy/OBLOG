@@ -38,6 +38,7 @@ class AuthenticatedSessionController extends Controller
 
         Fortify::loginView(function () {
             return view('admin.auth.login');
+            // return dd($this->guard);
         });
     }
 

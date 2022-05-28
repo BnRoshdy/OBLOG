@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserPassRequest;
+
 use Illuminate\Support\Facades\Auth;
 Use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -11,35 +13,26 @@ class profile extends Controller
 {
     public function index()
     {
-       
-        return view('user.change_password');
+        $data = User::where('id', Auth::user()->id)->get();
+        return view('user.change_password')->with('data',$data);
     }
 
-       
-
-    public function update_password(Request $request)
+    public function update_password(UserPassRequest $request)
 
         {
-             $validatedData = $request->validate([
-                    'current_password' => ['required'],
-                    'new_password' => ['required'],
-                    'password_confirmation' => ['same:new_password']
-                ]);
-
+            $data = $request->validated();
+                    
             $user = new User ;
            $hashedPassword = User::select('password')->where('id',Auth::user()->id)->get();
         foreach($hashedPassword as $user )
-           if (Hash::check($request->input('current_password'), $user->password)) 
+           if (Hash::check($data['current_password'], $user->password)) 
            {
-            
-                    
-                if(strcmp($request->input('current_password'), $request->input('new_password')) == 0)
+                if(strcmp($data['current_password'], $data['new_password']) == 0)
                 {
-                    // Current password and new password same
                     return redirect()->back()->with("error","New Password cannot be same as your current password.");
                 }
                 else {
-                   User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+                   User::find(auth()->user()->id)->update(['password'=> Hash::make($data['new_password'])]);
                    $user->save();
 
                   return redirect(route('user.update_password'));  
