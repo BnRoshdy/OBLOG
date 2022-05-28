@@ -50,15 +50,13 @@
                 {{ $selectedn = 'selected' }}
                 @elseif($s->category=='Movies')
                 {{ $selectedm = 'selected' }}
-                @elseif($s->category=='Recommend')
-                {{ $selectedr = 'selected' }}
+                
                 @elseif($s->category=='Manga')
                 {{ $selectedz = 'selected' }}
                 @endif></div>
                 <select name="category" id="category" style="color: white text-color:black width:300px" >
                     <option  value ="New Anime" {{ $selectedn }}> New Anime  </option>
                     <option  value ="Movies" {{ $selectedm }}> Movies        </option>
-                    <option  value ="Recommend" {{ $selectedr }}>Recommend   </option>
                     <option  value ="Manga" {{ $selectedz }}>Manga           </option>
                 </select>                     
 

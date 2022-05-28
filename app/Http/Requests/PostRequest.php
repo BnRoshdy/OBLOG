@@ -26,7 +26,6 @@ class PostRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            // 'image_path' => 'required',
             'category' => 'required'
         ];
     }
@@ -35,7 +34,6 @@ class PostRequest extends FormRequest
         $this->merge([
             'title' => strip_tags($this['title']),
             'description' => strip_tags($this['description']),
-            // 'image_path' => strip_tags($this->image_path),
             'category' => strip_tags($this['category'])
         ]);
     }
